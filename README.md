@@ -349,9 +349,6 @@ Hardware reference documentation included in this repository:
 ---
 
 ## Repository Structure
-
-```text
-.
 ├── Circuit_Diagram.png       # Electrical connection schematic
 ├── ESP32-Pinout.png          # ESP32 pin configuration diagram
 ├── Final_Fingerprint.ino     # Main ESP32 source code
