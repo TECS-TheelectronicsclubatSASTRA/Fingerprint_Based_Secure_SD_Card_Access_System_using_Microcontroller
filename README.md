@@ -233,11 +233,16 @@ An ESP32-powered biometric access control system utilizing optical fingerprint a
 [![Firmware](https://img.shields.io/badge/Firmware-Arduino--C%2B%2B-00878f?style=plastic)](https://www.arduino.cc/)
 [![Build](https://img.shields.io/badge/Build-Passing-28a745?style=plastic)]()
 
-[Overview](#overview) • [Key Features](#key-features) • [Hardware Specifications](#hardware-specifications) • [Circuit & Pinout](#circuit-diagram--pinout) • [System Workflow](#system-workflow) • [Hardware Gallery](#hardware-gallery) • [Getting Started](#getting-started) • [Datasheets](#datasheets--documentation) • [Repository Structure](#repository-structure) • [Notes & Limitations](#notes--known-limitations) • [Future Work](#future-work) • [Team](#team) • [License](#license)
+[Team](#team) • [Overview](#overview) • [Key Features](#key-features) • [Hardware Specifications](#hardware-specifications) • [Circuit & Pinout](#circuit-diagram--pinout) • [System Workflow](#system-workflow) • [Hardware Gallery](#hardware-gallery) • [Getting Started](#getting-started) • [Datasheets](#datasheets--documentation) • [Repository Structure](#repository-structure) • [Notes & Limitations](#notes--known-limitations) • [Future Work](#future-work)  • [License](#license)
 
 </div>
 
 ---
+## Team
+
+* Aarif Mohammed Ali Sheik
+* S Yogesh
+* G K Pranav Sankar
 
 ## Overview
 
@@ -356,3 +361,22 @@ Hardware reference documentation included in this repository:
 ├── README.md                 # Project documentation
 ├── Workflow.png              # Architectural workflow diagram
 └── esp32_datasheet_en.pdf    # ESP32 microcontroller datasheet
+
+## Notes / Known Limitations
+
+* On every reboot, `/database.txt` is fully overwritten and **all fingerprint templates are wiped**, requiring BOSS re-enrollment. This is by design for the current prototype and should be revisited before any persistent/production use.
+* The database currently holds 20 fixed records (car models); Slot 1 is reserved for BOSS and never maps to a record.
+
+## Future Work
+
+* **Persistent storage:** Move away from wipe-on-boot behavior — persist fingerprint template metadata and the `nextID` counter in EEPROM/NVS (or a flag file on the SD card) so the system retains enrolled users across power cycles.
+* **Real user records:** Replace the placeholder car-model database with actual user-relevant data (e.g., name, access level, timestamp log) mapped to each fingerprint slot.
+* **Access logging:** Log every scan attempt (granted/denied/unknown) with a timestamp to the SD card for an auditable access history.
+* **Fallback authentication:** Add a PIN/password fallback (e.g., via keypad) for cases where the fingerprint sensor fails to read.
+* **Slot management:** Add a BOSS-only "delete user" flow so revoking access doesn't require a full system wipe.
+* **Scalability:** Test and document behavior as the number of enrolled users approaches the sensor's template capacity.
+
+## License
+
+For academic/project use only. No formal license has been applied yet — contact the team before reuse or distribution.
+<div align="center">
