@@ -41,23 +41,7 @@ To implement administrator-controlled security using biometric authentication vi
 * All modules share a common ground with the ESP32 and the power adapter.
 
 ## Circuit Diagram
-Laptop/PC ──USB(Power&Data)──┐
-         │
-                             
-External 5V Adapter ──5V/GND─
-         ┤
-         ▼
-┌─────────────────┐         UART(TX/RX)        ┌──────────────────┐
-│                 ├───────────────────────────►│ Fingerprint Senso│
-│                 │                            └──────────────────┘
-│   ESP32         │         SPI(MOSI,MISO,SCK,CS)  ┌───────────────┐
-│   NodeMCU-32    ├───────────────────────────────►│MicroSD Module │
-│                 │                                └───────────────┘
-│            [LV] ├──I2C(3.3V Logic)──► Logic Level Shifter [HV] ──I2C(5V Logic)──► I2C LCD (16x2)
-└────────┬────────┘
-         │
-         ▼
-COMMON GROUND ── (SD Module, Level Shifter, LCD, Power Adapter)
+![Circuit Diagram](./Circuit_Diagram.png)
 
 ## Workflow
 
