@@ -120,10 +120,10 @@ For academic/project use only. No formal license has been applied yet — contac
 
 An ESP32-powered biometric access control system utilizing optical fingerprint authentication, an SPI-based SD card database, and a 16x2 I2C LCD interface.
 
-[![TECS Club](https://img.shields.io/badge/TECS-SASTRA_Deemed_University-orange?style=for-the-badge)](https://github.com/TECS-TheelectronicsclubatSASTRA)
-[![Microcontroller](https://img.shields.io/badge/ESP32-NodeMCU--32-blue?style=for-the-badge&logo=espressif)](https://www.espressif.com/)
-[![Language](https://img.shields.io/badge/C%2B%2B-Arduino-00979D?style=for-the-badge&logo=arduino)](https://www.arduino.cc/)
-[![Status](https://img.shields.io/badge/Status-Completed-brightgreen?style=for-the-badge)]()
+[![Organization](https://img.shields.io/badge/TECS-SASTRA-333333?style=plastic)](https://github.com/TECS-TheelectronicsclubatSASTRA)
+[![Hardware](https://img.shields.io/badge/Hardware-ESP32-007acc?style=plastic)](https://www.espressif.com/)
+[![Firmware](https://img.shields.io/badge/Firmware-Arduino--C%2B%2B-00878f?style=plastic)](https://www.arduino.cc/)
+[![Build](https://img.shields.io/badge/Build-Passing-28a745?style=plastic)]()
 
 [Overview](#overview) • [Key Features](#key-features) • [Hardware Specifications](#hardware-specifications) • [Circuit Diagram](#circuit-diagram) • [System Workflow](#system-workflow) • [Hardware Gallery](#hardware-gallery) • [Getting Started](#getting-started) • [Repository Structure](#repository-structure) • [Team](#team)
 
