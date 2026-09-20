@@ -69,6 +69,13 @@ To implement administrator-controlled security using biometric authentication vi
 * **BOSS scan (Slot 1):** switches the system back into Enrollment Mode.
 * **Valid user scan (Slot 2+):** LCD shows `Access Granted`, reads `/database.txt`, jumps to line `Slot ID - 1`, and prints the matching record (e.g., Slot 2 → Line 1 → "Toyota Corolla") on the bottom LCD row.
 * **Unknown fingerprint:** LCD shows `Access Denied: Unknown User`, then clears and returns to idle.
+![Workflow Diagram](./Workflow.png)
+
+## Hardware Setup Gallery
+
+| Setup View 1 | Setup View 2 |
+| :---: | :---: |
+| ![Project Image 1](./Project_img1.png) | ![Project Image 2](./Project_img2.png) |
 
 ## Getting Started
 
