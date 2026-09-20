@@ -114,3 +114,123 @@ To implement administrator-controlled security using biometric authentication vi
 ## License
 
 For academic/project use only. No formal license has been applied yet — contact the team before reuse or distribution.
+<div align="center">
+
+# Fingerprint-Based Secure SD Card Access System
+
+An ESP32-powered biometric access control system utilizing optical fingerprint authentication, an SPI-based SD card database, and a 16x2 I2C LCD interface.
+
+[![TECS Club](https://img.shields.io/badge/TECS-SASTRA_Deemed_University-orange?style=for-the-badge)](https://github.com/TECS-TheelectronicsclubatSASTRA)
+[![Microcontroller](https://img.shields.io/badge/ESP32-NodeMCU--32-blue?style=for-the-badge&logo=espressif)](https://www.espressif.com/)
+[![Language](https://img.shields.io/badge/C%2B%2B-Arduino-00979D?style=for-the-badge&logo=arduino)](https://www.arduino.cc/)
+[![Status](https://img.shields.io/badge/Status-Completed-brightgreen?style=for-the-badge)]()
+
+[Overview](#overview) • [Key Features](#key-features) • [Hardware Specifications](#hardware-specifications) • [Circuit Diagram](#circuit-diagram) • [System Workflow](#system-workflow) • [Hardware Gallery](#hardware-gallery) • [Getting Started](#getting-started) • [Repository Structure](#repository-structure) • [Team](#team)
+
+</div>
+
+---
+
+## Overview
+
+This project implements an administrator-controlled security system built on the ESP32 platform. Biometric authentication is managed via a two-tier hierarchy: an administrative fingerprint ("BOSS") controls system mode transitions, while standard user fingerprints map directly to indexed user data records stored in a MicroSD card database (`/database.txt`). System status, operational modes, and retrieved user data are rendered in real time on a 16x2 I2C LCD display.
+
+---
+
+## Key Features
+
+* **Role-Based Access Control:** Slot 1 is reserved exclusively for the administrator ("BOSS") to toggle between Enrollment and Scanning modes.
+* **Direct Database Mapping:** Biometric templates in slots 2+ map 1:1 to indexed text entries within the MicroSD card database file.
+* **Real-Time Display Output:** Interfaced 16x2 I2C LCD provides immediate system state feedback and data retrieval displays.
+* **Autonomous Database Initialization:** Generates database structures on bootup and validates module communication before operation.
+
+---
+
+## Hardware Specifications
+
+| Component | Communication Interface | Description / Role |
+| :--- | :---: | :--- |
+| **ESP32 NodeMCU-32** | Main Controller | Manages system logic, SPI, I2C, and Hardware UART buses |
+| **R307 / R307S Fingerprint Module** | UART (TX/RX) | Biometric template capture, storage, and matching |
+| **MicroSD Card Module** | SPI | Hosts the central data registry (`/database.txt`) |
+| **16x2 I2C LCD Display** | I2C (SDA/SCL) | Primary visual display interface |
+| **Logic Level Shifter** | I2C Bridge | Converts ESP32 3.3V logic levels to 5V LCD logic levels |
+| **External 5V Power Supply** | Power | Delivers stable power supply across all connected peripherals |
+
+---
+
+## Circuit Diagram
+
+<div align="center">
+
+![Circuit Diagram](./Circuit_Diagram.png)
+
+</div>
+
+---
+
+## System Workflow
+
+<div align="center">
+
+![Workflow Diagram](./Workflow.png)
+
+</div>
+
+### Operational Modes
+
+1. **Initialization:** On bootup, the system verifies SD module readiness, clears volatile memory, and prompts for primary administrator enrollment into Slot 1.
+2. **Enrollment Mode:** Scanning the administrator fingerprint switches the system into enrollment. New user fingerprints are registered sequentially starting at Slot 2.
+3. **Scanning Mode:** Continuous background scanning. Scanning a registered user fetches and renders the corresponding line entry from the SD database onto the LCD display.
+
+---
+
+## Hardware Gallery
+
+<div align="center">
+
+| System Assembly View 1 | System Assembly View 2 |
+| :---: | :---: |
+| <img src="./Project_img1.png" width="420"/> | <img src="./Project_img2.png" width="420"/> |
+
+</div>
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+* **Development Environment:** [Arduino IDE](https://www.arduino.cc/en/software) configured with ESP32 board support.
+* **Required Libraries:**
+  * `LiquidCrystal_I2C`
+  * `SPI`
+  * `SD`
+  * `Adafruit_Fingerprint`
+  * `HardwareSerial`
+
+### Hardware Pinout Configuration
+
+* **MicroSD Module CS:** `GPIO 5`
+* **Fingerprint Sensor:** `UART2` (RX = `GPIO 16`, TX = `GPIO 17`) at `57600 baud`
+* **I2C LCD Address:** `0x27`
+
+### Setup and Upload Procedure
+
+1. Clone or download this repository.
+2. Open [`Final_Fingerprint.ino`](./Final_Fingerprint.ino) in Arduino IDE.
+3. Select your ESP32 target board and corresponding serial port.
+4. Compile and upload the sketch. View debug output via the Serial Monitor at `115200 baud`.
+
+---
+
+## Repository Structure
+
+```text
+.
+├── Circuit_Diagram.png       # Electrical connection schematic
+├── Final_Fingerprint.ino     # Main ESP32 source code
+├── Project_img1.png          # Physical hardware assembly setup
+├── Project_img2.png          # System display and sensor view
+├── README.md                 # Project documentation
+└── Workflow.png              # Architectural workflow diagram
